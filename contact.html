@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Name - Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div></div> 
+        <div class="menu-container"> 
+            
+            <button id="mode-toggle" aria-label="Toggle Day/Night Mode">
+                <i class="fas fa-sun"></i> 
+            </button>
+
+            <button id="burger-icon" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="main-menu">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="bio.html">BIO</a></li> 
+                    <li><a href="portfolio.html">PORTFOLIO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contact-page">
+        <section class="contact-content-wrapper">
+
+            <button id="back-button" class="back-link" aria-label="Go back to the previous page">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            
+            <h1 class="contact-title">
+                GET IN TOUCH
+            </h1>
+            
+            <p class="contact-intro">
+                For studio visits, commission inquiries, or general questions, please use the form below or contact me directly via email.
+            </p>
+
+            <form action="YOUR_SERVERLESS_FORM_ENDPOINT" method="POST" class="contact-form">
+                
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="_replyto" required>
+                
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+                
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+
+            <div class="direct-contact">
+                <h2>Direct Contact</h2>
+                <p>
+                    <i class="fas fa-envelope"></i> 
+                    Email: <a href="mailto:jane.doe.art@example.com">jane.doe.art@example.com</a>
+                </p>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> 
+                    Studio located in Berlin (by appointment only)
+                </p>
+            </div>
+
+        </section>
+    </main>
+
+<script>
+        // Existing components (keep these at the top)
+        const menu = document.getElementById('main-menu');
+        const burgerIcon = document.getElementById('burger-icon');
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+        
+        // NEW: Back Button Selector
+        const backButton = document.getElementById('back-button');
+
+        // --- NEW/UPDATED MODE LOGIC STARTS HERE ---
+        
+        // Function to update the icon appearance
+        function updateModeIcon(isNight) {
+            const icon = modeToggle.querySelector('i');
+            icon.classList.remove('fa-sun', 'fa-moon');
+            if (isNight) {
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // 1. CHECK LOCAL STORAGE ON LOAD
+        const savedMode = localStorage.getItem('mode');
+        if (savedMode === 'night') {
+            body.classList.add('night-mode');
+            updateModeIcon(true);
+        } else {
+            // Ensure day mode icon is set if nothing is saved or if it's set to 'day'
+            updateModeIcon(false);
+        }
+
+        // 2. TOGGLE LOGIC (Save to Local Storage)
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('night-mode');
+            const isNight = body.classList.contains('night-mode');
+
+            // Save the new state to the browser's local storage
+            if (isNight) {
+                localStorage.setItem('mode', 'night');
+            } else {
+                localStorage.setItem('mode', 'day');
+            }
+
+            updateModeIcon(isNight);
+        });
+
+        // --- NEW/UPDATED MODE LOGIC ENDS HERE ---
+        
+        // 3. Menu Toggle Logic (Existing—Keep this here)
+        burgerIcon.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            burgerIcon.querySelector('i').classList.toggle('fa-bars');
+            burgerIcon.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // 4. NEW: Back Button Logic
+        if (backButton) {
+            backButton.addEventListener('click', () => {
+                // history.back() navigates to the previous page in the browser's history
+                window.history.back(); 
+            });
+        }
+        
+    </script>
+</body>
+</html>

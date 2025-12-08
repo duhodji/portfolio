@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Name - Biography</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div></div> 
+        <div class="menu-container"> 
+            
+            <button id="mode-toggle" aria-label="Toggle Day/Night Mode">
+                <i class="fas fa-sun"></i> 
+            </button>
+
+            <button id="burger-icon" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="main-menu">
+                <ul>
+                    <li><a href="index.html">HOME</a></li> <li> 
+                    <li><a href="portfolio.html">PORTFOLIO</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="bio-page">
+        <section class="bio-content-wrapper">
+            
+            <button id="back-button" class="back-link" aria-label="Go back to the previous page">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+
+            <h1 class="bio-title">
+                MARLEON: THE ARTIST
+            </h1>
+            
+            <div class="bio-text">
+                <p>
+                    Marleon is a conceptual artist and sculptor based in Berlin. Her work primarily explores the intersection of industrial materials and natural forms, challenging conventional notions of beauty and decay. Born in New York in 1985, Jane studied at the Rhode Island School of Design, where she first developed her signature style of incorporating salvaged metal and wood into monumental, yet delicate, installations.
+                </p>
+                <p>
+                    Her most celebrated series, "Ephemeral Rust," has been exhibited internationally, from the Tate Modern to the Mori Art Museum. Jane often uses processes of accelerated corrosion and meticulous layering, inviting viewers to reflect on permanence and the passage of time. She believes that the history embedded in discarded materials gives her creations an authentic, lived narrative.
+                </p>
+            </div>
+            
+            <h2 class="gallery-heading">
+                In the Studio
+            </h2>
+
+            <div class="bio-gallery">
+                <div class="gallery-item">
+                    <img src="work-1.png" alt="Artist working on a large sculpture">
+                </div>
+                <div class="gallery-item">
+                    <img src="work-2.png" alt="Close-up of artist's hands working with metal">
+                </div>
+                <div class="gallery-item">
+                    <img src="work-3.png" alt="Artist sketching in her studio">
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        const menu = document.getElementById('main-menu');
+        const burgerIcon = document.getElementById('burger-icon');
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+        const backButton = document.getElementById('back-button');
+
+        // --- NEW/UPDATED MODE LOGIC STARTS HERE ---
+        
+        // Function to update the icon appearance
+        function updateModeIcon(isNight) {
+            const icon = modeToggle.querySelector('i');
+            icon.classList.remove('fa-sun', 'fa-moon');
+            if (isNight) {
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // 1. CHECK LOCAL STORAGE ON LOAD
+        const savedMode = localStorage.getItem('mode');
+        if (savedMode === 'night') {
+            body.classList.add('night-mode');
+            updateModeIcon(true);
+        } else {
+            // Ensure day mode icon is set if nothing is saved or if it's set to 'day'
+            updateModeIcon(false);
+        }
+
+        // 2. TOGGLE LOGIC (Save to Local Storage)
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('night-mode');
+            const isNight = body.classList.contains('night-mode');
+
+            // Save the new state to the browser's local storage
+            if (isNight) {
+                localStorage.setItem('mode', 'night');
+            } else {
+                localStorage.setItem('mode', 'day');
+            }
+
+            updateModeIcon(isNight);
+        });
+
+        // --- NEW/UPDATED MODE LOGIC ENDS HERE ---
+        
+        // 3. Menu Toggle Logic (Existing—Keep this here)
+        burgerIcon.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            burgerIcon.querySelector('i').classList.toggle('fa-bars');
+            burgerIcon.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // 4. NEW: Back Button Logic
+        if (backButton) {
+            backButton.addEventListener('click', () => {
+                // history.back() navigates to the previous page in the browser's history
+                window.history.back(); 
+            });
+        }
+    </script>
+</body>
+</html>

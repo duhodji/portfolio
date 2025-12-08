@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Name - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div></div> 
+        <div class="menu-container"> 
+            
+            <button id="mode-toggle" aria-label="Toggle Day/Night Mode">
+                <i class="fas fa-sun"></i> 
+            </button>
+
+            <button id="burger-icon" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="main-menu">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="bio.html">BIO</a></li> 
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="portfolio-page">
+        <section class="portfolio-content-wrapper">
+
+            <button id="back-button" class="back-link" aria-label="Go back to the previous page">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            
+            <h1 class="portfolio-title">
+                SELECTED WORKS
+            </h1>
+            
+            <div class="slider-container">
+
+                <div class="slider-track" id="slider-track">
+                    
+                    <div class="project-slide">
+                        <div class="project-image">
+                            <img src="project-1.png" alt="Eroded Monument">
+                        </div>
+                        <div class="project-details">
+                            <h2 class="project-heading">Eroded Monument</h2>
+                            <p class="project-meta">2024 | Salvaged Steel, 10ft x 4ft</p>
+                            
+                            <div class="project-description">
+                                <p>
+                                    **Lengthy Description 1:** This piece marks the beginning of the "Ephemeral Rust" series, exploring the beauty found in decay. The salvaged steel, sourced from a decommissioned shipyard, was intentionally treated with an acidic solution to accelerate the corrosion process. The resulting deep, mottled reds and oranges are not painted, but are the natural result of time and chemical interaction, challenging the viewer to consider materials beyond their original functional life.
+                                </p>
+                                <p>
+                                    The monumental scale is intended to contrast with the inherent fragility of the material structure, suggesting that even the strongest societal foundations are subject to environmental pressures and entropy. The installation demands attention through both its size and its vivid texture, inviting a tactile experience of visual history.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-slide">
+                        <div class="project-image">
+                            <img src="project-2.png" alt="Quiet Decay">
+                        </div>
+                        <div class="project-details">
+                            <h2 class="project-heading">Quiet Decay</h2>
+                            <p class="project-meta">2023 | Mixed Media Installation</p>
+                            
+                            <div class="project-description">
+                                <p>
+                                    **Lengthy Description 2:** "Quiet Decay" shifts the focus from industrial scale to intimate texture. This installation incorporates fine copper wiring woven around decayed wooden forms, housed within a glass casing. The wood was left outdoors for six months to allow natural fungal and insect activity to contribute to its structure.
+                                </p>
+                                <p>
+                                    The copper acts as a ghostly embrace, highlighting the negative space left by erosion. The piece reflects on memory and absence, suggesting that what is lost leaves behind an imprint as compelling as what remains. The careful placement of the casing forces contemplation, transforming a process of biological decomposition into a preserved moment of artistic reflection.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-slide">
+                        <div class="project-image">
+                            <img src="project-3.png" alt="Woven Wire">
+                        </div>
+                        <div class="project-details">
+                            <h2 class="project-heading">Woven Wire</h2>
+                            <p class="project-meta">2022 | Bronze and Copper Mesh</p>
+                            
+                            <div class="project-description">
+                                <p>
+                                    **Lengthy Description 3:** This smaller, more kinetic sculpture uses tightly woven bronze and copper mesh to create an optical illusion of solidity. The piece changes character drastically depending on the light source and the viewer's perspective, appearing dense and heavy from one angle, and translucent from another.
+                                </p>
+                                <p>
+                                    "Woven Wire" is a study in materiality and light, drawing inspiration from ancient armor and organic cellular structures. The technique required meticulous hand-weaving over three months, a meditative process that itself mirrors the slow, deliberate work of nature. It serves as a reminder that the strongest forms often contain the most complex internal structures.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                <button id="prev-slide" class="slide-button prev-button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="next-slide" class="slide-button next-button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            </section>
+    </main>
+
+    <script>
+        // Existing components
+        const menu = document.getElementById('main-menu');
+        const burgerIcon = document.getElementById('burger-icon');
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+
+        // NEW: Back Button Selector
+        const backButton = document.getElementById('back-button');
+        
+        // NEW SLIDER COMPONENTS
+        const track = document.getElementById('slider-track');
+        const slides = document.querySelectorAll('.project-slide');
+        const prevButton = document.getElementById('prev-slide');
+        const nextButton = document.getElementById('next-slide');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        // SLIDER LOGIC
+        function updateSlider() {
+            const slideWidth = slides[0].clientWidth;
+            // The magic: move the track horizontally by the width of one slide multiplied by the current index.
+            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+            
+            // Disable buttons at the start/end
+            prevButton.disabled = currentSlide === 0;
+            nextButton.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlider();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlider();
+            }
+        }
+
+        // Event Listeners for the Slider
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+        
+        // Update slider on load and resize
+        window.addEventListener('resize', updateSlider);
+        window.addEventListener('load', updateSlider);
+
+
+// --- NEW/UPDATED MODE LOGIC STARTS HERE ---
+        
+        // Function to update the icon appearance
+        function updateModeIcon(isNight) {
+            const icon = modeToggle.querySelector('i');
+            icon.classList.remove('fa-sun', 'fa-moon');
+            if (isNight) {
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // 1. CHECK LOCAL STORAGE ON LOAD
+        const savedMode = localStorage.getItem('mode');
+        if (savedMode === 'night') {
+            body.classList.add('night-mode');
+            updateModeIcon(true);
+        } else {
+            // Ensure day mode icon is set if nothing is saved or if it's set to 'day'
+            updateModeIcon(false);
+        }
+
+        // 2. TOGGLE LOGIC (Save to Local Storage)
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('night-mode');
+            const isNight = body.classList.contains('night-mode');
+
+            // Save the new state to the browser's local storage
+            if (isNight) {
+                localStorage.setItem('mode', 'night');
+            } else {
+                localStorage.setItem('mode', 'day');
+            }
+
+            updateModeIcon(isNight);
+        });
+
+        // --- NEW/UPDATED MODE LOGIC ENDS HERE ---
+        
+        // 3. Menu Toggle Logic (Existing—Keep this here)
+        burgerIcon.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            burgerIcon.querySelector('i').classList.toggle('fa-bars');
+            burgerIcon.querySelector('i').classList.toggle('fa-times');
+        })
+
+        // 4. NEW: Back Button Logic
+        if (backButton) {
+            backButton.addEventListener('click', () => {
+                // history.back() navigates to the previous page in the browser's history
+                window.history.back(); 
+            });
+        }
+    </script>
+</body>
+</html>
