@@ -10,7 +10,7 @@
 <body>
 
     <header>
-        <div></div> 
+        <a href="index.html" class="artist-name-link">MARLEON</a> 
         <div class="menu-container"> 
             
             <button id="mode-toggle" aria-label="Toggle Day/Night Mode">
@@ -34,9 +34,11 @@
     <main class="portfolio-page">
         <section class="portfolio-content-wrapper">
 
+<!--
             <button id="back-button" class="back-link" aria-label="Go back to the previous page">
                 <i class="fas fa-arrow-left"></i> Back
             </button>
+-->
             
             <h1 class="portfolio-title">
                 SELECTED WORKS
@@ -112,7 +114,15 @@
                 </button>
             </div>
             </section>
+
+
     </main>
+
+    <div id="version-link" class="version-link-container">
+        <a href="portfolio2.html" class="version-link">
+            View the alternate portfolio layout
+        </a>
+    </div>
 
     <script>
         // Existing components
@@ -121,8 +131,8 @@
         const modeToggle = document.getElementById('mode-toggle');
         const body = document.body;
 
-        // NEW: Back Button Selector
-        const backButton = document.getElementById('back-button');
+//        // NEW: Back Button Selector
+//        const backButton = document.getElementById('back-button');
         
         // NEW SLIDER COMPONENTS
         const track = document.getElementById('slider-track');
@@ -213,13 +223,13 @@
             burgerIcon.querySelector('i').classList.toggle('fa-times');
         })
 
-        // 4. NEW: Back Button Logic
-        if (backButton) {
-            backButton.addEventListener('click', () => {
-                // history.back() navigates to the previous page in the browser's history
-                window.history.back(); 
-            });
-        }
+//        // 4. NEW: Back Button Logic
+//        if (backButton) {
+//            backButton.addEventListener('click', () => {
+//                // history.back() navigates to the previous page in the browser's history
+//               window.history.back(); 
+//            });
+//        }
     </script>
 </body>
 </html>
