@@ -559,3 +559,55 @@ button:hover {
 .direct-contact a:hover {
     color: var(--text-color);
 }
+
+/* --- New CSS for the Artist Name Link ---
+*/
+.artist-name-link {
+    /* Style the text and link appearance */
+    font-size: 1.5rem; /* Make it prominent */
+    font-weight: bold;
+    text-decoration: none; /* Remove underline */
+    color: var(--primary-color); /* Use a variable or fixed color that stands out */
+    
+    /* Ensure it appears on the far left */
+    margin-right: auto; /* This can also help push other elements to the right */
+}
+
+/* --- If you want it to look different in Night Mode ---
+*/
+.night-mode .artist-name-link {
+    color: var(--night-mode-primary-color); /* Or just white/light gray */
+}
+
+
+
+/* ==================================== */
+/* 8. VERSION SWITCH LINK STYLES */
+/* ==================================== */
+
+.version-link-container {
+    /* Center the container within the page content area */
+    width: 90%;
+    max-width: 1200px; 
+    margin: 40px auto 20px auto; 
+    text-align: center;
+}
+
+.version-link {
+    /* Style the link discretely */
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-decoration: none;
+    
+    /* Use accent color for visibility, but keep it subtle */
+    color: var(--accent-color);
+    opacity: 0.6;
+    transition: opacity 0.3s, color 0.3s;
+}
+
+.version-link:hover {
+    opacity: 1;
+    color: var(--accent-color);
+    text-decoration: underline;
+}
