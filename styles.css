@@ -224,6 +224,7 @@ button:hover {
     text-align: justify;
 }
 
+
 /* --- Gallery Layout (Easy to Add/Remove Images) --- */
 .bio-gallery {
     display: grid;
@@ -610,4 +611,91 @@ button:hover {
     opacity: 1;
     color: var(--accent-color);
     text-decoration: underline;
+}
+
+/* --- NEW: Sub-Title Style --- */
+.artist-sub-title {
+    font-family: var(--body-font); /* Use the body font for a subtle contrast */
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    margin-top: -5px; /* Pull it closer to the H1 */
+    margin-bottom: 20px; /* Space it from any following content */
+    font-weight: 400;
+    opacity: 0.7; /* Make it slightly lighter than the main text */
+    color: var(--text-color);
+}
+
+/* Adjust the margin of the main artist-name slightly */
+.artist-name {
+    font-family: var(--heading-font);
+    font-size: 3.5rem;
+    letter-spacing: 0.2rem;
+    /* Reduced margin-top slightly to make the overall block look tight */
+    margin-top: 15px; 
+    font-weight: 300;
+}
+
+/* --- Home Page Link Wrapper Styling --- */
+.home-link-wrapper {
+    /* Critical: Remove the default anchor text decoration */
+    text-decoration: none; 
+    
+    /* Ensure the link takes up the full space of its content */
+    display: inline-block; 
+    
+    /* Change the cursor to indicate the entire area is clickable */
+    cursor: pointer; 
+    
+    /* Add a transition for a subtle interactive effect */
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Optional: Add a subtle hover effect */
+.home-link-wrapper:hover {
+    opacity: 0.9;
+    transform: scale(1.01); /* Subtle movement */
+}
+
+/* Ensure text color is inherited/not overridden by the link */
+.home-link-wrapper .artist-name,
+.home-link-wrapper .artist-sub-title {
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+/* Optional: Change name/title color on hover for feedback */
+.home-link-wrapper:hover .artist-name,
+.home-link-wrapper:hover .artist-sub-title {
+    color: var(--accent-color);
+}
+
+/* --- NEW: Social Media Links --- */
+
+.social-links-container {
+    /* Positioning: Center the block at the bottom of the viewport area */
+    width: 100%;
+    text-align: center;
+    padding: 30px 0; 
+    
+    /* Ensure it sticks to the bottom if the main content is short */
+    margin-top: auto; 
+    
+    /* Optional: Add a subtle border/line above it */
+    border-top: 1px solid var(--photo-border-color);
+}
+
+.social-links-container a {
+    /* Style the links themselves */
+    font-size: 1.8rem;
+    color: var(--text-color); /* Inherit main text color */
+    text-decoration: none;
+    margin: 0 15px; /* Spacing between icons */
+    transition: color 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
+.social-links-container a:hover {
+    /* Highlight effect on hover */
+    color: var(--accent-color); /* Use the accent color for a pop */
+    transform: translateY(-3px); /* Subtle lift effect */
 }
